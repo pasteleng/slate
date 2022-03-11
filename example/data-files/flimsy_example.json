@@ -1,0 +1,23 @@
+{
+    "Rubric Marines": {
+        "stats": "M6 WS3 BS3 S4 T4 W2 A3 L7 SV3",
+        "psychic_phase": {
+            "Smite": "18\" WC5+ D3/D6 MW",
+            "Glamour of Tzeentch": "18\" WC6 -1 To Hit"
+        },
+        "shooting_phase": {
+            "Inferno Boltgun": "24\" RF1 S4 AP2 D1",
+            "Inferno Bolt Pistol": "12\" PS1 S4 AP2 D1",
+            "Soulreaper Cannon": "24\" HV5 S6 AP3 D1"
+        },
+        "combat_phase": {
+            "Force Stave": "S+3 AP1 D3"
+        }
+    },
+    "Scarab Occult Terminators": {
+        "stats": "M6 WS3 BS3 S4 T4 W3 A3 L8 SV2",
+        "psychc_phase": {
+            "Smite": "18\" WC5+ D3/D6 MW"
+        }
+    }
+}
