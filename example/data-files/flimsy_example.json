@@ -1,23 +1,38 @@
-{
-    "Rubric Marines": {
-        "stats": "M6 WS3 BS3 S4 T4 W2 A3 L7 SV3",
-        "psychic_phase": {
-            "Smite": "18\" WC5+ D3/D6 MW",
-            "Glamour of Tzeentch": "18\" WC6 -1 To Hit"
-        },
-        "shooting_phase": {
-            "Inferno Boltgun": "24\" RF1 S4 AP2 D1",
-            "Inferno Bolt Pistol": "12\" PS1 S4 AP2 D1",
-            "Soulreaper Cannon": "24\" HV5 S6 AP3 D1"
-        },
-        "combat_phase": {
-            "Force Stave": "S+3 AP1 D3"
-        }
-    },
-    "Scarab Occult Terminators": {
-        "stats": "M6 WS3 BS3 S4 T4 W3 A3 L8 SV2",
-        "psychc_phase": {
-            "Smite": "18\" WC5+ D3/D6 MW"
-        }
-    }
-}
+[
+  {
+    "name": "UNIT_NAME_ALPHA",
+    "stats": "SAMPLE STATS WOULD GO HERE",
+    "psychic": [
+      {"name": "psychic_name_x", "desc": "description of ability x"},
+      {"name": "psychic_name_y", "desc": "description of ability y"},
+      {"name": "psychic_name_z", "desc": "description of ability z"},
+    ],
+    "shooting": [
+      {"name": "weapon_profile_a", "desc": "description of profile a"},
+      {"name": "weapon_profile_b", "desc": "description of profile b"},
+    ],
+    "combat": [
+      {"name": "weapon_profile_n", "desc": "description of profile n"},
+      {"name": "weapon_profile_m", "desc": "description of profile m"},
+    ],
+    "keywords": "keyword1, keyword2, keyword3, keyword4"
+  },
+  {
+    "name": "UNIT_NAME_BETA",
+    "stats": "SAMPLE STATS WOULD GO HERE",
+    "psychic": [
+      {"name": "psychic_name_xb", "desc": "description of ability xb"},
+      {"name": "psychic_name_yb", "desc": "description of ability yb"},
+      {"name": "psychic_name_zb", "desc": "description of ability zb"},
+    ],
+    "shooting": [
+      {"name": "weapon_profile_a", "desc": "description of profile a2"},
+      {"name": "weapon_profile_b", "desc": "description of profile b2"},
+    ],
+    "combat": [
+      {"name": "weapon_profile_n", "desc": "description of profile nb"},
+      {"name": "weapon_profile_m", "desc": "description of profile mb"},
+    ],
+    "keywords": "keyword1, keyword2, keyword3, keyword4"
+  }
+]
