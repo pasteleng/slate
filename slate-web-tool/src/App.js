@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import DataView from './DataView';
+import UnitInput from './UnitInput';
 
 const SAMPLE_OBJ = [
   {
@@ -41,17 +42,70 @@ const SAMPLE_OBJ = [
   }
 ]
 
+
 function App() {
 
+  // Hooks setup
   const [slateData, setSlateData] = useState([]);
+  const [displayModal, setDisplayModal] = useState(false);
+  const [newUnit, setNewUnit] = useState({});
 
+
+  // Defaults
+  const DEFAULT_UNIT = {
+    name:     "",
+    stats:    "",
+    psychic:  [],
+    shooting: [],
+    combat:   [],
+    keywords: ""
+  }
+
+
+  // React magic
   useEffect(() => {
     setSlateData(SAMPLE_OBJ);
   }, []);
 
+
+  // Open new unit modal
+  const handleShow = () => {
+    setNewUnit(DEFAULT_UNIT);
+    setShow(true);
+  };
+
+
+  // Close new unit modal
+  const handleClose = () => {
+    setShow(false);
+    setNewUnit(DEFAULT_UNIT);
+  };
+
+
+  // new unit state modification
+  const editNewUnitName     = (uName)  => { setNewUnit({ ...newUnit, name: uName }) };
+  const editNewUnitStats    = (uStats) => { setNewUnit({ ...newUnit, stats: uStats }) };
+  const editNewUnitPsychic  = (uPsych) => { setNewUnit({ ...newUnit, psychic: uPsych }) };
+  const editNewUnitShooting = (uShoot) => { setNewUnit({ ...newUnit, shooting: uShoot }) };
+  const editNewUnitCombat   = (uCombt) => { setNewUnit({ ...newUnit, combat: uCombt }) };
+  const editNewUnitKeyWords = (uKyWrd) => { setNewUnit({ ...newUnit, keywords: uKyWrd }) };
+
+
+  // JSX magic
   return (
     <div className="App">
         <DataView data={slateData} />
+        <NewUnitModal
+          setDisplayModal={setDisplayModal}
+          handleClose={handleClose}
+          newUnit={newUnit}
+          editNewUnitName={editNewUnitName}
+          editNewUnitStats={editNewUnitStats}
+          editNewUnitPsychic={editNewUnitPsychic}
+          editNewUnitShooting={editNewUnitShooting}
+          editNewUnitCombat={editNewUnitCombat}
+          editNewUnitKeyWords={editNewUnitKeyWords}
+        />
     </div>
   );
 }
