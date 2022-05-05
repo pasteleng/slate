@@ -1,13 +1,12 @@
 import UnitDescriptionBlock from './UnitDescriptionBlock';
-import './DataView.css';
-
 
 function DataView(props) {
   return (
     <div className="data-view">
-      <div className="content-box-rounded">
+      <h3>Slate Data:</h3>
+      <div>
         {props.data.map((val, key) => (
-          <div key={ key } className="unit-container">
+          <div key={ key }>
             <p>{ val.name }</p>
             <p>{ val.stats }</p>
             <UnitDescriptionBlock

@@ -1,7 +1,16 @@
+/*
+  TODO - Update DataView when adding new unit
+  TODO - slateData export to .json file
+*/
+
 import React, { useState, useEffect } from 'react';
+import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
 
 import DataView from './DataView';
-import UnitInput from './UnitInput';
+import NewUnitModal from './NewUnitModal';
 
 const SAMPLE_OBJ = [
   {
@@ -47,7 +56,7 @@ function App() {
 
   // Hooks setup
   const [slateData, setSlateData] = useState([]);
-  const [displayModal, setDisplayModal] = useState(false);
+  const [show, setShow] = useState(false);
   const [newUnit, setNewUnit] = useState({});
 
 
@@ -82,7 +91,18 @@ function App() {
   };
 
 
-  // new unit state modification
+  // Add a newly created unit to the list
+  const addUnitToList = () => {
+    /*let modList = slateData;
+    modList.push(newUnit);
+    */
+    setSlateData(slateData.push(newUnit));
+    console.log(slateData);
+    handleClose();
+  };
+
+
+  // new unit state editing
   const editNewUnitName     = (uName)  => { setNewUnit({ ...newUnit, name: uName }) };
   const editNewUnitStats    = (uStats) => { setNewUnit({ ...newUnit, stats: uStats }) };
   const editNewUnitPsychic  = (uPsych) => { setNewUnit({ ...newUnit, psychic: uPsych }) };
@@ -94,9 +114,28 @@ function App() {
   // JSX magic
   return (
     <div className="App">
-        <DataView data={slateData} />
-        <NewUnitModal
-          setDisplayModal={setDisplayModal}
+      <Container className="sm">
+        <Row>
+          <h1>Magos</h1>
+          <h2>Data Slate Builder</h2>
+        </Row>
+        <Row className="my-2">
+          <Col sm={2} className="mx-5">
+            <Row className="my-2">
+              <Button variant="primary" onClick={ handleShow }>New Unit</Button>
+            </Row>
+            <Row className="my-2">
+              <Button variant="primary">Export Data File</Button>
+            </Row>
+          </Col>
+          <Col sm={4}>
+            <DataView data={slateData} />
+          </Col>
+        </Row>
+      </Container>
+
+      <NewUnitModal
+          show={show}
           handleClose={handleClose}
           newUnit={newUnit}
           editNewUnitName={editNewUnitName}
@@ -105,6 +144,7 @@ function App() {
           editNewUnitShooting={editNewUnitShooting}
           editNewUnitCombat={editNewUnitCombat}
           editNewUnitKeyWords={editNewUnitKeyWords}
+          addUnitToList={addUnitToList}
         />
     </div>
   );
