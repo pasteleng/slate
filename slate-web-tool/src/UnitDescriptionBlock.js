@@ -1,12 +1,11 @@
 import React from 'react';
 
 const UnitDescToList = (props) => {
-    const groupdata = props.groupdata.map((val, key) => {
+    const groupdata = props.groupdata?.map((val, key) => {
         return (
             <li key={key}>{ val.name }: { val.desc }</li>
         );
     })
-
     return <ul>{ groupdata }</ul>
 };
 

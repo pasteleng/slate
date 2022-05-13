@@ -11,7 +11,6 @@ const NewUnitModal = (props) => {
 	const {
 		show,
 		handleClose,
-		newUnit,
 		editNewUnitName,
 		editNewUnitStats,
 		editNewUnitPsychic,
@@ -21,23 +20,21 @@ const NewUnitModal = (props) => {
 		addUnitToList
 	} = props;
 
-
 	// Get the user input in textareas to the expected format
 	const textToObjectArray = (val) => {
-		let attrObj = {};
+		let attrObj = [];
 		let arrayByLine = val.split(/\r?\n/);
 
 		arrayByLine.forEach((line) => {
 			if (line.includes(":")) {
 				let splitLine = line.split(":");
-				let lineObj = {[splitLine[0]]: splitLine[1]};
-				attrObj = { ...attrObj, lineObj };
+				let lineObj = { 'name': [splitLine[0]], 'desc': splitLine[1].trim() };
+				attrObj.push(lineObj);
 			}
 		});
 
 		return attrObj;
 	};
-
 
 	return (
 		<Modal show={ show } onHide={ handleClose }>
@@ -46,7 +43,7 @@ const NewUnitModal = (props) => {
 			</Modal.Header>
 			<Modal.Body>
 				<Form>
-					<Form.Group className="mb-3" controlId="form-unit-name">
+					<Form.Group className="mb-3" controlId="form-unit-name" id="unitname">
 						<Form.Label>Unit Name</Form.Label>
 						<Form.Control 
 							placeholder="++ Unit Name ++"
@@ -68,11 +65,11 @@ const NewUnitModal = (props) => {
 						<Form.Control
 							as="textarea"
 							rows={5}
-							placeholder="{&#10;power: power description&#10;power2: power2 description&#10;}"
+							placeholder="power: power description&#x10;power2: power2 description&#10;etc..."
 							onChange={ (e) => (editNewUnitPsychic(textToObjectArray(e.target.value))) }
 						/>
 						<Form.Text className="text-muted">
-							Format as JSON object
+							One power per line
 						</Form.Text>
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="form-unit-shooting">
@@ -80,11 +77,11 @@ const NewUnitModal = (props) => {
 						<Form.Control
 							as="textarea"
 							rows={5}
-							placeholder="{&#10;weapon1: weapon1 stats&#10;weapon2: weapon2 stats&#10;}"
+							placeholder="weapon1: weapon1 stats&#10;weapon2: weapon2 stats&#10;etc...}"
 							onChange={ (e) => (editNewUnitShooting(textToObjectArray(e.target.value))) }
 						/>
 						<Form.Text className="text-muted">
-							Format as JSON object
+							One weapon profile per line
 						</Form.Text>
 					</Form.Group>
 					<Form.Group className="mb-3" controlId="form-unit-combat">
@@ -92,17 +89,17 @@ const NewUnitModal = (props) => {
 						<Form.Control
 							as="textarea"
 							rows={5}
-							placeholder="{&#10;weapon1: weapon1 stats&#10;weapon2: weapon2 stats&#10;}"
+							placeholder="weapon1: weapon1 stats&#10;weapon2: weapon2 stats&#10;etc...}"
 							onChange={ (e) => (editNewUnitCombat(textToObjectArray(e.target.value))) }
 						/>
 						<Form.Text className="text-muted">
-							Format as JSON object
+							One weapon profile per line
 						</Form.Text>
 					</Form.Group>
 				</Form>
 				<Form.Group className="mb-3" controlId="form-unit-keywords">
 						<Form.Label>Unit Keywords</Form.Label>
-						<Form.Control 
+						<Form.Control
 							placeholder="++ Unit Keywords ++"
 							onChange={ (e) => (editNewUnitKeyWords(e.target.value)) }
 						/>

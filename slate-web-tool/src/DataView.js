@@ -1,9 +1,12 @@
 import UnitDescriptionBlock from './UnitDescriptionBlock';
 
+import Button from 'react-bootstrap/Button';
+
 function DataView(props) {
   return (
     <div className="data-view">
       <h3>Slate Data:</h3>
+      <p className="text-muted">+++ Data shown as it will appear on device +++</p>
       <div>
         {props.data.map((val, key) => (
           <div key={ key }>
@@ -22,6 +25,7 @@ function DataView(props) {
               groupdata={ val.combat }
             />
             <p>{ val.keywords }</p>
+            <Button variant="secondary" onClick={() => props.deleteUnit(val.uuid)}>Delete Unit</Button>
           </div>
         ))}
       </div>

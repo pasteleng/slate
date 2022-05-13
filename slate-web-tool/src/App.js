@@ -1,9 +1,9 @@
 /*
-  TODO - Update DataView when adding new unit
   TODO - slateData export to .json file
 */
+import { v4 as uuid } from 'uuid';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Col from 'react-bootstrap/Col';
@@ -51,14 +51,12 @@ const SAMPLE_OBJ = [
   }
 ]
 
-
 function App() {
 
   // Hooks setup
   const [slateData, setSlateData] = useState([]);
   const [show, setShow] = useState(false);
   const [newUnit, setNewUnit] = useState({});
-
 
   // Defaults
   const DEFAULT_UNIT = {
@@ -67,15 +65,9 @@ function App() {
     psychic:  [],
     shooting: [],
     combat:   [],
-    keywords: ""
+    keywords: "",
+    uuid: uuid()
   }
-
-
-  // React magic
-  useEffect(() => {
-    setSlateData(SAMPLE_OBJ);
-  }, []);
-
 
   // Open new unit modal
   const handleShow = () => {
@@ -83,33 +75,31 @@ function App() {
     setShow(true);
   };
 
-
   // Close new unit modal
   const handleClose = () => {
     setShow(false);
     setNewUnit(DEFAULT_UNIT);
   };
 
-
   // Add a newly created unit to the list
   const addUnitToList = () => {
-    /*let modList = slateData;
-    modList.push(newUnit);
-    */
-    setSlateData(slateData.push(newUnit));
-    console.log(slateData);
+    setSlateData( slateData => [...slateData, newUnit] );
     handleClose();
   };
 
+  // remove a unit from the list
+  const deleteUnit = (id) => {
+    console.log(`deleting unit uuid: ${id}`);
 
-  // new unit state editing
+  };
+
+  // new unit hooks editing
   const editNewUnitName     = (uName)  => { setNewUnit({ ...newUnit, name: uName }) };
   const editNewUnitStats    = (uStats) => { setNewUnit({ ...newUnit, stats: uStats }) };
   const editNewUnitPsychic  = (uPsych) => { setNewUnit({ ...newUnit, psychic: uPsych }) };
   const editNewUnitShooting = (uShoot) => { setNewUnit({ ...newUnit, shooting: uShoot }) };
   const editNewUnitCombat   = (uCombt) => { setNewUnit({ ...newUnit, combat: uCombt }) };
   const editNewUnitKeyWords = (uKyWrd) => { setNewUnit({ ...newUnit, keywords: uKyWrd }) };
-
 
   // JSX magic
   return (
@@ -120,7 +110,7 @@ function App() {
           <h2>Data Slate Builder</h2>
         </Row>
         <Row className="my-2">
-          <Col sm={2} className="mx-5">
+          <Col sm={2}>
             <Row className="my-2">
               <Button variant="primary" onClick={ handleShow }>New Unit</Button>
             </Row>
@@ -128,8 +118,8 @@ function App() {
               <Button variant="primary">Export Data File</Button>
             </Row>
           </Col>
-          <Col sm={4}>
-            <DataView data={slateData} />
+          <Col sm={4} className="mx-2">
+            <DataView data={slateData} deleteUnit={deleteUnit} />
           </Col>
         </Row>
       </Container>
