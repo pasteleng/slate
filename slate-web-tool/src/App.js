@@ -1,5 +1,8 @@
 /*
   TODO - slateData export to .json file
+  TODO - edit unit
+  TODO - think about making true CRUD w/ database connection
+         + potential legal ramifications of saving game & rules info
 */
 import { v4 as uuid } from 'uuid';
 
@@ -90,7 +93,10 @@ function App() {
   // remove a unit from the list
   const deleteUnit = (id) => {
     console.log(`deleting unit uuid: ${id}`);
-
+    let filteredData = slateData.filter( (item) => {
+      return (item.uuid !== id)
+    });
+    setSlateData(filteredData);
   };
 
   // new unit hooks editing

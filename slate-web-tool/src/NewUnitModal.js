@@ -65,7 +65,7 @@ const NewUnitModal = (props) => {
 						<Form.Control
 							as="textarea"
 							rows={5}
-							placeholder="power: power description&#x10;power2: power2 description&#10;etc..."
+							placeholder="power: power description&#10;power2: power2 description&#10;etc..."
 							onChange={ (e) => (editNewUnitPsychic(textToObjectArray(e.target.value))) }
 						/>
 						<Form.Text className="text-muted">
@@ -77,7 +77,7 @@ const NewUnitModal = (props) => {
 						<Form.Control
 							as="textarea"
 							rows={5}
-							placeholder="weapon1: weapon1 stats&#10;weapon2: weapon2 stats&#10;etc...}"
+							placeholder="weapon1: weapon1 stats&#10;weapon2: weapon2 stats&#10;etc..."
 							onChange={ (e) => (editNewUnitShooting(textToObjectArray(e.target.value))) }
 						/>
 						<Form.Text className="text-muted">
@@ -89,7 +89,7 @@ const NewUnitModal = (props) => {
 						<Form.Control
 							as="textarea"
 							rows={5}
-							placeholder="weapon1: weapon1 stats&#10;weapon2: weapon2 stats&#10;etc...}"
+							placeholder="weapon1: weapon1 stats&#10;weapon2: weapon2 stats&#10;etc..."
 							onChange={ (e) => (editNewUnitCombat(textToObjectArray(e.target.value))) }
 						/>
 						<Form.Text className="text-muted">
