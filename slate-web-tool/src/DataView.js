@@ -9,7 +9,7 @@ function DataView(props) {
       <p className="text-muted">+++ Data shown as it will appear on device +++</p>
       <div>
         {props.data.map((val, key) => (
-          <div key={ key }>
+          <div key={ key } className="my-2">
             <p>{ val.name }</p>
             <p>{ val.stats }</p>
             <UnitDescriptionBlock

@@ -1,5 +1,4 @@
 /*
-  TODO - slateData export to .json file
   TODO - edit unit
   TODO - think about making true CRUD w/ database connection
          + potential legal ramifications of saving game & rules info
@@ -18,7 +17,7 @@ import NewUnitModal from './NewUnitModal';
 const SAMPLE_OBJ = [
   {
     "name": "UNIT_NAME_ALPHA",
-    "stats": "stats stats stats stats stats",
+    "stats": "M:? WS:? BS:? S:? T:? W:? A:? Ld:? Sv:?",
     "psychic": [
       {"name": "psychic_name_x", "desc": "description of ability x"},
       {"name": "psychic_name_y", "desc": "description of ability y"},
@@ -36,7 +35,7 @@ const SAMPLE_OBJ = [
   },
   {
     "name": "UNIT_NAME_BETA",
-    "stats": "Sstats stats stats stats stats",
+    "stats": "M:? WS:? BS:? S:? T:? W:? A:? Ld:? Sv:?",
     "psychic": [
       {"name": "psychic_name_xb", "desc": "description of ability xb"},
       {"name": "psychic_name_yb", "desc": "description of ability yb"},
@@ -61,7 +60,7 @@ function App() {
   const [show, setShow] = useState(false);
   const [newUnit, setNewUnit] = useState({});
 
-  // Defaults
+  // Default(s)
   const DEFAULT_UNIT = {
     name:     "",
     stats:    "",
@@ -118,10 +117,34 @@ function App() {
         <Row className="my-2">
           <Col sm={2}>
             <Row className="my-2">
-              <Button variant="primary" onClick={ handleShow }>New Unit</Button>
+              <Button variant="primary" onClick={ handleShow }>Add Unit</Button>
             </Row>
             <Row className="my-2">
-              <Button variant="primary">Export Data File</Button>
+              <Button variant="primary"
+                href={`data:text/json;charset=utf-8,
+                ${ encodeURIComponent(JSON.stringify(slateData)) }`}
+                download="slatedata.json"
+              >
+                Export Slate Data
+              </Button>
+            </Row>
+            <Row className="my-2">
+              <Button variant="primary"
+                href={`data:text/json;charset=utf-8,
+                ${ encodeURIComponent(JSON.stringify(DEFAULT_UNIT)) }`}
+                download="blank_datafile.json"
+              >
+                Export Blank Data File
+              </Button>
+            </Row>
+            <Row className="my-2">
+              <Button variant="primary"
+                href={`data:text/json;charset=utf-8,
+                ${ encodeURIComponent(JSON.stringify(SAMPLE_OBJ)) }`}
+                download="sample_slatedata.json"
+              >
+                Export Sample Data
+              </Button>
             </Row>
           </Col>
           <Col sm={4} className="mx-2">
